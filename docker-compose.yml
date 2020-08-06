@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  octoprint:
+    container_name: octoprint
+    image: sckyzo/octoprint
+    restart: unless-stopped
+    environment:
+      - CAMERA_DEV="/dev/video0"
+      - MJPEG_STREAMER_AUTOSTART=true
+      - MJPEG_STREAMER_INPUT="-y -n -f 30 -r 1280x720"
+    ports:
+      - 80:80
+    volumes:
+      - ~/docker/octoprint/data/:/data/
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    #cpu_count: 2
+    #cpu_percent: 75
+
+volumes: 
+    data:
