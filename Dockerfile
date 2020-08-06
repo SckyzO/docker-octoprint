@@ -1,8 +1,8 @@
 # Intermediate build container.
 FROM python:alpine as build
 
-ARG TARGETPLATFORM=arm32v7
-ARG VERSION=1.4.2
+ARG TARGETPLATFORM
+ARG VERSION
 
 RUN apk --no-cache add build-base
 RUN apk --no-cache add cmake
