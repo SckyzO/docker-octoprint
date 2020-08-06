@@ -2,7 +2,7 @@
 FROM python:alpine as build
 
 ARG TARGETPLATFORM=arm32v7
-ARG VERSION=1.4.1
+ARG VERSION=1.4.2
 
 RUN apk --no-cache add build-base
 RUN apk --no-cache add cmake
