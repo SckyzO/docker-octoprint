@@ -35,6 +35,7 @@ COPY --from=build /OctoPrint-* /opt/octoprint
 
 RUN apk --no-cache add build-base ffmpeg haproxy libjpeg openssh-client supervisor v4l-utils
 RUN ln -s ~/.octoprint /data
+RUN mkdir -p /data/plugins/bin
 
 VOLUME /data
 WORKDIR /data
@@ -48,7 +49,7 @@ ENV MJPEG_STREAMER_AUTOSTART true
 ENV MJPEG_STREAMER_INPUT -y -n -r 1280x720
 ENV PIP_USER true
 ENV PYTHONUSERBASE /data/plugins
-ENV PATH /data/plugins/bin:${PATH}
+ENV PATH /data/plugins/bin:$PATH
 
 EXPOSE 80
 
