@@ -50,6 +50,7 @@ ENV MJPEG_STREAMER_INPUT -y -n -r 1280x720
 ENV PIP_USER true
 ENV PYTHONUSERBASE /data/plugins
 ENV PATH /data/plugins/bin:$PATH
+ENV LD_LIBRARY_PATH /opt/vc/lib/
 
 EXPOSE 80
 
