@@ -136,3 +136,4 @@ List of news features
 
 - [ ] Integrate Cura Engine in last version with python 3 support
 - [ ] Add plugins support with Docker env
+- [ ] Run container without root process
