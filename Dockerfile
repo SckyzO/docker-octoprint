@@ -35,7 +35,7 @@ COPY --from=build /OctoPrint-* /opt/octoprint
 
 RUN apk --no-cache add build-base ffmpeg haproxy libjpeg openssh-client supervisor v4l-utils
 RUN ln -s ~/.octoprint /data
-RUN mkdir -p /data/plugins/bin
+
 
 VOLUME /data
 WORKDIR /data
