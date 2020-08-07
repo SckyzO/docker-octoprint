@@ -20,7 +20,7 @@ stages:
     if: tag IS present OR branch = master
   
 script:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u sckyzo --password-stdin
   - docker run --privileged linuxkit/binfmt:v0.8
   - docker buildx create --use
   - docker buildx build

@@ -7,7 +7,7 @@ Since 1.4.x release, Octoprint is based on python 3. This container use `python/
 This is a Dockerfile to set up [OctoPrint](http://octoprint.org/). It supports the following architectures automatically:
 
 - x86
-- arm32v6 [^1^](##armv6-docker-bug)
+- arm32v6 [<sup>1<sup>](##armv6-docker-bug)
 - arm32v7
 - arm64
 
@@ -66,7 +66,7 @@ It will return once OctoPrint [supports python3](https://github.com/foosel/OctoP
 3. You must allow access to device: /dev/vchiq
 4. Change `MJPEG_STREAMER_INPUT` to use input_raspicam.so (ex: `input_raspicam.so -fps 25`)
 
-^* Raspberry PI camera support is only available in `arm/v6` and `arm/v7` builds at the moment.^
+<sup>* Raspberry PI camera support is only available in `arm/v6` and `arm/v7` builds at the moment.<sup>
 
 ### USB Webcam
 
