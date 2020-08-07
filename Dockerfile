@@ -9,7 +9,7 @@ RUN apk --no-cache add cmake
 RUN apk --no-cache add libjpeg-turbo-dev
 RUN apk --no-cache add linux-headers
 RUN apk --no-cache add openssl
-RUN [[ "${TARGETPLATFORM:6}" != "arm64" ]] && apk --no-cache add raspberrypi-dev || true
+RUN [[ "${TARGETPLATFORM:6}" != "arm64" ]] && apk --no-cache add raspberrypi-dev raspberrypi-libs || true
 
 # Download packages
 RUN wget -qO- https://github.com/foosel/OctoPrint/archive/${OCTOPRINT_VERSION}.tar.gz | tar xz
@@ -48,13 +48,12 @@ ENV MJPEG_STREAMER_AUTOSTART true
 ENV MJPEG_STREAMER_INPUT -y -n -r 1280x720
 ENV PIP_USER true
 ENV PYTHONUSERBASE /data/plugins
-
+ENV PATH /data/plugins/bin:$PATH
 
 EXPOSE 80
 
 LABEL description="OctoPrint is an open source 3D print controller application." \
       nextcloud="Octoprint v${OCTOPRINT_VERSION}" \
       maintainer="SckyzO <https://www.github.com/sckyzo>"
-
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
