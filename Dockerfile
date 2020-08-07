@@ -2,7 +2,7 @@
 FROM python:alpine as build
 
 ARG TARGETPLATFORM
-ARG VERSION
+ARG OCTOPRINT_VERSION
 
 RUN apk --no-cache add build-base
 RUN apk --no-cache add cmake
@@ -12,7 +12,7 @@ RUN apk --no-cache add openssl
 RUN [[ "${TARGETPLATFORM:6}" != "arm64" ]] && apk --no-cache add raspberrypi-dev || true
 
 # Download packages
-RUN wget -qO- https://github.com/foosel/OctoPrint/archive/${VERSION}.tar.gz | tar xz
+RUN wget -qO- https://github.com/foosel/OctoPrint/archive/${OCTOPRINT_VERSION}.tar.gz | tar xz
 RUN wget -qO- https://github.com/jacksonliam/mjpg-streamer/archive/master.tar.gz | tar xz
 
 # Install mjpg-streamer
@@ -21,7 +21,7 @@ RUN make
 RUN make install
 
 # Install OctoPrint
-WORKDIR /OctoPrint-${VERSION}
+WORKDIR /OctoPrint-${OCTOPRINT_VERSION}
 RUN pip install -r requirements.txt
 RUN python setup.py install
 
@@ -54,7 +54,8 @@ ENV PATH /data/plugins/bin:$PATH
 EXPOSE 80
 
 LABEL description="OctoPrint is an open source 3D print controller application." \
-      nextcloud="Octoprint v${VERSION}" \
+      nextcloud="Octoprint v${OCTOPRINT_VERSION}" \
       maintainer="SckyzO <https://www.github.com/sckyzo>"
+
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

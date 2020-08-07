@@ -1,10 +1,10 @@
+language: bash
+
+dist: bionic
+
 before_install:
     - curl -sf https://test.docker.com | sh
     - docker --version
-  
-dist: bionic
-  
-language: bash
   
 env:
   global:
@@ -20,12 +20,12 @@ stages:
     if: tag IS present OR branch = master
   
 script:
-  - echo "$DOCKER_PASSWORD" | docker login -u sckyzo --password-stdin
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   - docker run --privileged linuxkit/binfmt:v0.8
   - docker buildx create --use
   - docker buildx build
     --platform $PLATFORMS
-    --build-arg "VERSION=$TRAVIS_BRANCH"
+    --build-arg "OCTOPRINT_VERSION=$TRAVIS_BRANCH"
     --file "Dockerfile"
     --tag sckyzo/octoprint:$TRAVIS_BRANCH-$VARIANT
     `if [ -n "$TRAVIS_TAG" ]; then echo "--tag sckyzo/octoprint:$VARIANT"; fi`
