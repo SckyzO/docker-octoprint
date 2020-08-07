@@ -133,5 +133,6 @@ MIT
 ## Todo
 
 List of news features
-[] Integrate Cura Engine in last version with python 3 support
-[] Add support of plugins directly when run container
+
+- [ ] Integrate Cura Engine in last version with python 3 support
+- [ ] Add plugins support with Docker env
