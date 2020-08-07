@@ -7,7 +7,7 @@ Since 1.4.x release, Octoprint is based on python 3. This container use `python/
 This is a Dockerfile to set up [OctoPrint](http://octoprint.org/). It supports the following architectures automatically:
 
 - x86
-- arm32v6 [<sup>1</sup>](#armv6-docker-bug)
+- arm32v6 [^1^](##armv6-docker-bug)
 - arm32v7
 - arm64
 
@@ -19,11 +19,11 @@ docker run sckyzo/octoprint
 
 Now have a beer, you did it. 🍻
 
-# Tags
+## Tags
 
 - `1.4.2`, `alpine`, `latest`
 
-# Tested devices
+## Tested devices
 
 | Device              | Working? |
 | ------------------- | -------- |
@@ -33,7 +33,7 @@ Now have a beer, you did it. 🍻
 
 Please let me know if you test any others, would love to increase the compatibility list!
 
-# Usage
+## Usage
 
 ```shell
 $ docker run \
@@ -43,7 +43,7 @@ $ docker run \
   sckyzo/octoprint
 ```
 
-# Environment Variables
+## Environment Variables
 
 | Variable                 | Description                    | Default Value       |
 | ------------------------ | ------------------------------ | ------------------- |
@@ -51,29 +51,29 @@ $ docker run \
 | MJPEG_STREAMER_AUTOSTART | Start the camera automatically | `true`              |
 | MJPEG_STREAMER_INPUT     | Flags to pass to mjpg_streamer | `-y -n -r 1280x720` |
 
-# CuraEngine integration
+## CuraEngine integration
 
 Cura engine integration was very outdated (using version `15.04.6`) and was removed.
 
 It will return once OctoPrint [supports python3](https://github.com/foosel/OctoPrint/pull/1416#issuecomment-371878648) (needed for the newest versions of cura engine).
 
-# Webcam integration
+## Webcam integration
 
-## Raspberry Pi camera module (default)
+### Raspberry Pi camera module (default)
 
 1. The camera module must be activated (sudo raspi-config -> interfacing -> Camera -> set it to YES)
 2. Memory split must be at least 128mb, 256mb recommended. (sudo raspi-config -> Advanced Options -> Memory Split -> set it to 128 or 256)
 3. You must allow access to device: /dev/vchiq
 4. Change `MJPEG_STREAMER_INPUT` to use input_raspicam.so (ex: `input_raspicam.so -fps 25`)
 
-<sup>* Raspberry PI camera support is only available in `arm/v6` and `arm/v7` builds at the moment.</sup>
+^* Raspberry PI camera support is only available in `arm/v6` and `arm/v7` builds at the moment.^
 
-## USB Webcam
+### USB Webcam
 
 1. Bind the camera to the docker using --device=/dev/video0:/dev/videoX
 2. Optionally, change `MJPEG_STREAMER_INPUT` to your preferred settings (ex: `input_uvc.so -y -n -r 1280x720 -f 10`)
 
-## Octoprint configuration
+### Octoprint configuration
 
 Use the following settings in octoprint:
 
@@ -84,7 +84,7 @@ webcam:
   ffmpeg: /usr/bin/ffmpeg
 ```
 
-## ARMv6 Docker Bug
+### ARMv6 Docker Bug
 
 _ARM32v6_ devices such as the Raspberry Pi Zero (W) are unfortunately unable to pull this image directly using `docker pull nunofgs/octoprint` due to a bug in Docker ([moby/moby#37647](https://github.com/moby/moby/issues/37647), [moby/moby#34875](https://github.com/moby/moby/issues/34875)). There's a [PR open](https://github.com/moby/moby/pull/36121#issuecomment-515243647) to fix this but it might be some time until it hits a stable Docker release.
 
@@ -98,7 +98,7 @@ $ docker manifest inspect sckyzo/octoprint | grep -e "variant.*v6" -B 4
 $ docker run sckyzo/octoprint@sha256:dce9b67ccd25bb63c3024ab96c55428281d8c3955c95c7b5133807133863da29
 ```
 
-## Toggle the camera on/off
+### Toggle the camera on/off
 
 This image uses `supervisord` in order to launch 3 processes: _haproxy_, _octoprint_ and _mjpeg-streamer_.
 
@@ -117,11 +117,11 @@ system:
     name: Stop webcam
 ```
 
-# Credits
+## Credits
 
-Original credits go to https://bitbucket.org/a2z-team/docker-octoprint. I initially ported this to the raspberry pi 2 and later moved to a multiarch image.
+Original credits go to [a2z Team](https://bitbucket.org/a2z-team/docker-octoprint). I initially ported this to the raspberry pi 2 and later moved to a multiarch image.
 
-This repo is based on [nunofgs](https://github.com/nunofgs/docker-octoprint/) work. 
+This repo is based on [nunofgs](https://github.com/nunofgs/docker-octoprint/) work.
 
 ## License
 
@@ -130,7 +130,8 @@ MIT
 [travis-image]: https://img.shields.io/travis/nunofgs/docker-octoprint.svg?style=flat-square
 [travis-url]: https://travis-ci.org/nunofgs/docker-octoprint
 
-# Todo
+## Todo
+
 List of news features
 [] Integrate Cura Engine in last version with python 3 support
 [] Add support of plugins directly when run container
