@@ -28,9 +28,8 @@ script:
     --build-arg "OCTOPRINT_VERSION=$TRAVIS_BRANCH"
     --file "Dockerfile"
     --tag sckyzo/octoprint:$TRAVIS_BRANCH-$VARIANT
-    `if [ -n "$TRAVIS_TAG" ]; then echo "--tag sckyzo/octoprint:$VARIANT"; fi`
     `if [ -n "$TRAVIS_TAG" ] && [ "$VARIANT" = "alpine" ]; then echo "--tag sckyzo/octoprint:latest"; fi`
-    `if [ "$VARIANT" = "alpine" ]; then echo "--tag sckyzo/octoprint:$TRAVIS_BRANCH"; fi`
+    `if [ "$VARIANT" = "alpine" ]; then echo "--tag sckyzo/octoprint:latest"; fi`
     --push
     .
   

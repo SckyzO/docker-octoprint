@@ -1,6 +1,6 @@
 # OctoPrint
 
-[![build status][travis-image]][travis-url]
+[![Build Status](https://travis-ci.org/SckyzO/docker-octoprint.svg?branch=master)](https://travis-ci.org/SckyzO/docker-octoprint)
 
 Since 1.4.x release, Octoprint is based on python 3. This container use `python/alpine` (currently python 3.8.5)
 
