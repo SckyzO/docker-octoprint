@@ -7,7 +7,7 @@ Since 1.4.x release, Octoprint is based on python 3. This container use `python/
 This is a Dockerfile to set up [OctoPrint](http://octoprint.org/). It supports the following architectures automatically:
 
 - x86
-- arm32v6 [<sup>1<sup>](##armv6-docker-bug)
+- arm32v6 [<sup>1<sup>](###armv6-docker-bug)
 - arm32v7
 - arm64
 
@@ -17,7 +17,7 @@ Just run:
 docker run sckyzo/octoprint
 ```
 
-Now have a beer, you did it. 🍻
+Now have a beer 🍻, and enjoy 😍
 
 ## Tags
 
@@ -45,11 +45,11 @@ $ docker run \
 
 ## Environment Variables
 
-| Variable                 | Description                    | Default Value       |
-| ------------------------ | ------------------------------ | ------------------- |
-| CAMERA_DEV               | The camera device node         | `/dev/video0`       |
-| MJPEG_STREAMER_AUTOSTART | Start the camera automatically | `true`              |
-| MJPEG_STREAMER_INPUT     | Flags to pass to mjpg_streamer | `-y -n -r 1280x720` |
+| Variable                 | Description                    | Default Value            |
+| ------------------------ | ------------------------------ | ------------------------ |
+| CAMERA_DEV               | The camera device node         | `/dev/vchiq`            |
+| MJPEG_STREAMER_AUTOSTART | Start the camera automatically | `true`                   |
+| MJPEG_STREAMER_INPUT     | Flags to pass to mjpg_streamer | `-x 1280 -y 720 -fps 15` |
 
 ## CuraEngine integration
 
@@ -64,14 +64,19 @@ It will return once OctoPrint [supports python3](https://github.com/foosel/OctoP
 1. The camera module must be activated (sudo raspi-config -> interfacing -> Camera -> set it to YES)
 2. Memory split must be at least 128mb, 256mb recommended. (sudo raspi-config -> Advanced Options -> Memory Split -> set it to 128 or 256)
 3. You must allow access to device: /dev/vchiq
-4. Change `MJPEG_STREAMER_INPUT` to use input_raspicam.so (ex: `input_raspicam.so -fps 25`)
+4. Change `MJPEG_STREAMER_INPUT` to use input_raspicam.so (ex: `input_raspicam.so -x 1280 -y 720 -fps 15`)
+
+For more details on the parameters of mjpeg_stream, please refer to the [official documentation](https://github.com/jacksonliam/mjpg-streamer/blob/master/mjpg-streamer-experimental/plugins/input_raspicam/README.md).
+For more details on the parameters of your Raspberry Pi Camera Module, please refer to the [official documentation](https://www.raspberrypi.org/documentation/raspbian/applications/camera.md)
+
+It does support upto 1080p 30fps, but the bandwidth produced would be more than the usb bus (and therefore ethernet port / wifi dongle) can provide. 720p 15fps is a good compromise.
 
 <sup>* Raspberry PI camera support is only available in `arm/v6` and `arm/v7` builds at the moment.<sup>
 
 ### USB Webcam
 
 1. Bind the camera to the docker using --device=/dev/video0:/dev/videoX
-2. Optionally, change `MJPEG_STREAMER_INPUT` to your preferred settings (ex: `input_uvc.so -y -n -r 1280x720 -f 10`)
+2. Optionally, change `MJPEG_STREAMER_INPUT` to your preferred settings (ex: `input_uvc.so -y -n -x 1920 -y 1080 -fps 25`)
 
 ### Octoprint configuration
 

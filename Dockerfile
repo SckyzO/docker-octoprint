@@ -46,7 +46,7 @@ COPY start-mjpg-streamer /usr/local/bin/start-mjpg-streamer
 
 ENV CAMERA_DEV /dev/video0
 ENV MJPEG_STREAMER_AUTOSTART true
-ENV MJPEG_STREAMER_INPUT -y -n -r 1280x720
+ENV MJPEG_STREAMER_INPUT -x 1280 -y 720 -fps 15 -ex auto
 ENV PIP_USER true
 ENV PYTHONUSERBASE /data/plugins
 ENV PATH /data/plugins/bin:$PATH
