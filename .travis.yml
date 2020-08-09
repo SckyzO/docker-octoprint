@@ -25,6 +25,7 @@ script:
   - docker buildx create --use
   - docker buildx build
     --platform $PLATFORMS
+    --build-arg "OCTOPRINT_VERSION"
     --file "Dockerfile"
     --tag sckyzo/octoprint:$OCTOPRINT_VERSION
     `if [ -n "$TRAVIS_TAG" ] && [ "$VARIANT" = "alpine" ]; then echo "--tag sckyzo/octoprint:latest"; fi`
