@@ -1,5 +1,5 @@
 # Intermediate build container.
-FROM python:alpine as build
+FROM python:3-alpine as build
 
 ARG TARGETPLATFORM
 ARG OCTOPRINT_VERSION
@@ -26,7 +26,7 @@ RUN pip install -r requirements.txt
 RUN python setup.py install
 
 # Build final image
-FROM python:alpine
+FROM python:3-alpine
 
 COPY --from=build /usr/local/bin /usr/local/bin
 COPY --from=build /usr/local/lib /usr/local/lib
