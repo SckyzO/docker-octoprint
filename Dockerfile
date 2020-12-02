@@ -22,8 +22,8 @@ RUN make install
 
 # Install OctoPrint
 WORKDIR /OctoPrint-${OCTOPRINT_VERSION}
-RUN pip install -r requirements.txt
-RUN python setup.py install
+RUN pip3 install -r requirements.txt
+RUN python3 setup.py install
 
 # Build final image
 FROM python:3-alpine
