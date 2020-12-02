@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/SckyzO/docker-octoprint.svg?branch=master)](https://travis-ci.org/SckyzO/docker-octoprint)
 
-New update : Octoprint 1.5.0
+New update : Octoprint 1.5.0 support
 
 This is a Dockerfile to set up [OctoPrint](http://octoprint.org/). It supports the following architectures automatically:
 
