@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/SckyzO/docker-octoprint.svg?branch=master)](https://travis-ci.org/SckyzO/docker-octoprint)
 
-Since 1.4.x release, Octoprint is based on python 3. This container use `python/alpine` (currently python 3.8.5)
+New update : Octoprint 1.5.0
 
 This is a Dockerfile to set up [OctoPrint](http://octoprint.org/). It supports the following architectures automatically:
 
@@ -21,7 +21,8 @@ Now have a beer 🍻, and enjoy 😍
 
 ## Tags
 
-- `1.4.2`, `alpine`, `latest`
+- `1.5.0`, `alpine`, `latest`
+- `1.4.2`
 
 ## Tested devices
 
