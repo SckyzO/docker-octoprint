@@ -1,5 +1,6 @@
 version: '3'
 
+
 services:
   octoprint:
     container_name: octoprint
@@ -12,12 +13,11 @@ services:
     ports:
       - 80:80
     volumes:
-      - ~/docker/octoprint/data/:/data/
+      - data:/data
     devices:
       - /dev/video0:/dev/video0
       - /dev/ttyUSB0:/dev/ttyUSB0
-    #cpu_count: 2
-    #cpu_percent: 75
 
-volumes: 
+
+volumes:
     data:
