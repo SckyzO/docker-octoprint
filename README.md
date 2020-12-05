@@ -21,7 +21,8 @@ Now have a beer 🍻, and enjoy 😍
 
 ## Tags
 
-- `1.5.0`, `alpine`, `latest`
+- `1.5.1`, `alpine`, `latest`
+- `1.5.0`
 - `1.4.2`
 
 ## Tested devices
