@@ -1,8 +1,8 @@
 # OctoPrint
 
-[![Build Status](https://travis-ci.org/SckyzO/docker-octoprint.svg?branch=master)](https://travis-ci.org/SckyzO/docker-octoprint)
+[![Build Status](https://travis-ci.com/SckyzO/docker-octoprint.svg?branch=master)](https://travis-ci.org/SckyzO/docker-octoprint)
 
-New update : Octoprint 1.5.0 support
+New update : Octoprint 1.5.x support
 
 This is a Dockerfile to set up [OctoPrint](http://octoprint.org/). It supports the following architectures automatically:
 
@@ -42,6 +42,18 @@ $ docker run \
   -p 80:80 \
   -v /mnt/data:/data \
   sckyzo/octoprint
+```
+## How to update Octoprint ? 
+
+💥 **Never use octoprint's built-in update system to update Octoprint.** 
+You can however update plugins.
+To update Octoprint in docker mode you will need to download the new image that I will make available
+
+With docker-compose : 
+
+```bash
+docker-compose pull
+docker-compose up -d
 ```
 
 ## Environment Variables
@@ -90,19 +102,6 @@ webcam:
   ffmpeg: /usr/bin/ffmpeg
 ```
 
-### ARMv6 Docker Bug
-
-_ARM32v6_ devices such as the Raspberry Pi Zero (W) are unfortunately unable to pull this image directly using `docker pull nunofgs/octoprint` due to a bug in Docker ([moby/moby#37647](https://github.com/moby/moby/issues/37647), [moby/moby#34875](https://github.com/moby/moby/issues/34875)). There's a [PR open](https://github.com/moby/moby/pull/36121#issuecomment-515243647) to fix this but it might be some time until it hits a stable Docker release.
-
-Until then, you can run this container by specifying the armv6 image hash. Example on [HypriotOS 1.11.0](https://blog.hypriot.com):
-
-```sh
-$ docker manifest inspect sckyzo/octoprint | grep -e "variant.*v6" -B 4
-
-# copy sha256 hash of the v6 image you want to run.
-
-$ docker run sckyzo/octoprint@sha256:dce9b67ccd25bb63c3024ab96c55428281d8c3955c95c7b5133807133863da29
-```
 
 ### Toggle the camera on/off
 
@@ -133,8 +132,8 @@ This repo is based on [nunofgs](https://github.com/nunofgs/docker-octoprint/) wo
 
 MIT
 
-[travis-image]: https://img.shields.io/travis/nunofgs/docker-octoprint.svg?style=flat-square
-[travis-url]: https://travis-ci.org/nunofgs/docker-octoprint
+[travis-image]: https://img.shields.io/travis/SckyzO/docker-octoprint.svg?style=flat-square
+[travis-url]: https://travis-ci.com/SckyzO/docker-octoprint
 
 ## Todo
 
